@@ -13,7 +13,7 @@ class User(Base):
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
     
-class Vefhicle(Base):
+class Vehicle(Base):
     __tablename__ = "vehicles"
     id = Column(Integer, primary_key=True, nullable=False)
     brand = Column(String, nullable=False)
@@ -32,4 +32,4 @@ class Glass(Base):
     vehicle_id = Column(Integer, ForeignKey(
         "vehicles.id", ondelete="CASCADE"), nullable=False)
 
-    owner = relationship("Vefhicle")
+    owner = relationship("Vehicle")
