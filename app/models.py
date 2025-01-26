@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
@@ -33,3 +33,16 @@ class Glass(Base):
         "vehicles.id", ondelete="CASCADE"), nullable=False)
 
     owner = relationship("Vefhicle")
+
+class Inventory(Base):
+    __tablename__ = 'inventory'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    quantity = Column(Integer, nullable=False)
+    price = Column(Float, nullable=False)
+    received_date = Column(Date, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True),
+                        nullable=False, server_default=text('now()'))
+    glass_id = Column(Integer, ForeignKey('glasses.id'), nullable=False)
+    
+    owner = relationship("Glass")
