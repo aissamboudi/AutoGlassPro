@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from . import models
 from .database import engine
-from .routers import user, auth
+from .routers import user, auth, vehicle, glass
 from .config import settings
 
 
@@ -18,10 +18,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-print(settings.database_hostname)
 
 app.include_router(auth.router)
 app.include_router(user.router)
+app.include_router(vehicle.router)
+app.include_router(glass.router)
 
 
 @app.get("/")

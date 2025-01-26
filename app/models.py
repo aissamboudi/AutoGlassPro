@@ -12,3 +12,24 @@ class User(Base):
     password = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
+    
+class Vefhicle(Base):
+    __tablename__ = "vehicles"
+    id = Column(Integer, primary_key=True, nullable=False)
+    brand = Column(String, nullable=False)
+    model = Column(String, nullable=False)
+    year = Column(Integer, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True),
+                        nullable=False, server_default=text('now()'))
+    
+class Glass(Base):
+    __tablename__ = 'glasses'
+    
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True),
+                        nullable=False, server_default=text('now()'))
+    vehicle_id = Column(Integer, ForeignKey(
+        "vehicles.id", ondelete="CASCADE"), nullable=False)
+
+    owner = relationship("Vefhicle")

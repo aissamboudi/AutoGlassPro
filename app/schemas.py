@@ -26,3 +26,31 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[str] = None
+
+class VehicleCreate(BaseModel):
+    brand: str
+    model: str
+    year: int
+
+class VehicleOut(BaseModel):
+    id: int
+    brand: str
+    model: str
+    year: int
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class GlassCreate(BaseModel):
+    name: str
+    vehicle_id: int
+
+class GlassOut(BaseModel):
+    id: int
+    name: str
+    vehicle_id: int
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
