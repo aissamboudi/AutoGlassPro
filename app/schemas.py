@@ -54,3 +54,24 @@ class GlassOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class InventoryCreate(BaseModel):
+    quantity: int
+    price: float
+    received_date: datetime
+    glass_id: int
+
+class InventoryOut(BaseModel):
+    id: int
+    quantity: int
+    price: int
+    received_date: datetime
+    created_at: datetime
+    glass_id: int
+    owner : GlassOut
+
+    class Config:
+        from_attributes = True
+
+class InventoryUpdate(BaseModel):
+    quantity: int
