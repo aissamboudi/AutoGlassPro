@@ -59,7 +59,7 @@ def delete_glass(id: int, db: Session = Depends(get_db), current_user: int = Dep
 
 
 @router.put("/{id}", response_model=schemas.GlassOut)
-def update_glass(id: int, updated_glass: schemas.GlassCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_glass(id: int, updated_glass: schemas.GlassUpdate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     glass_query = db.query(models.Glass).filter(models.Glass.id == id)
 

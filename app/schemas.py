@@ -46,10 +46,14 @@ class GlassCreate(BaseModel):
     name: str
     vehicle_id: int
 
+class GlassUpdate(BaseModel):
+    name: str
+
 class GlassOut(BaseModel):
     id: int
     name: str
     vehicle_id: int
+    owner : VehicleOut
     created_at: datetime
 
     class Config:
